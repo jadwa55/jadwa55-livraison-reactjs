@@ -1,16 +1,16 @@
 import axios from "axios";
 const APP_URL = "http://localhost:8080/api/";
 
-axios.defaults.headers = {
-  "Content-Type": "application/json",
-  "auth-token": window.localStorage.getItem("token") ?? "",
-};
+// axios.defaults.headers = {
+//   "Content-Type": "application/json",
+//   "auth-token": window.localStorage.getItem("token") ?? "",
+// };
 
 export function getAllcategory() {
-  return axios.get(APP_URL + "category");
+  return axios.get(APP_URL + "Category");
 }
 export function getcategory(id) {
-  return axios.get(APP_URL + "category/"+id);
+  return axios.get(APP_URL + "Category/"+id);
 }
 
 export function createCategorys(name, image) {

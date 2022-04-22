@@ -20,7 +20,6 @@ class Product extends React.Component {
       pandingupdate:true,
       newname: null,
       newdescription: null,
-      newname: null,
       newprice: null,
       newcategory_id: null,
     };
@@ -239,8 +238,6 @@ async handleSubmit(event) {
               </i>
             </div>
             <div>All Products
-              {/* <div className="page-title-subheading">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </div> */}
             </div>
           </div>
           <div className="page-title-actions">

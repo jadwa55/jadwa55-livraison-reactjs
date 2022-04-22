@@ -2,10 +2,7 @@ import React from 'react';
 import {  getAllcategory,updateCategory,getcategory,deleteCategory,getcategorydetails } from './../../../services/CategoryService';
 import Navbar from './../../../components/layouts/navbar';
 import Siderbar from './../../../components/layouts/siderbar';
-// import CardDash from './../../../components/layouts/carddash';
 import { handelCatchInAxios } from "../../../services/AxiosCatchService";
-
-
 
 
 class Category extends React.Component {
@@ -19,18 +16,18 @@ class Category extends React.Component {
       pandingcategory: true,
       pandingproducts: true,
       pandingupdate: true,
-      newName: null,
+      newType: null,
     };
-    this.handleName = this.handleName.bind(this);
+    this.handleType = this.handleType.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   async infoCategory() {
     try {
       let res = await getAllcategory(); // get axios promise
       let data = res.data;
-      console.log("ALL Catzgorys :", data);
+      console.log("ALL Categorys :", data.category);
       // get all data from pomise
-      this.setState({  infocategory: data }); // Set data to state
+      this.setState({  infocategory: data.category }); // Set data to state
       this.setState({ panding: false }); // Change status panding for render data
     } catch (e) {
       console.error(e);
@@ -80,22 +77,22 @@ async detailsButton (id) {
 
 }
 
-handleName(event) {
-  this.setState({ newName: event.target.value });
+handleType(event) {
+  this.setState({ newType: event.target.value });
 }
 
 async handleSubmit(event) {
   event.preventDefault();
 
-  let name = this.state.newName ?? this.state. infopdate.name;
+  let type = this.state.newType ?? this.state. infopdate.type;
 
 
-  console.log("A name was updating: " + name);
+  console.log("A type was updating: " + type);
 
   try {
       let resupdate = await updateCategory(
           this.state.infopdate.id,
-          name,
+          type,
 
       );
       console.log(resupdate);
@@ -110,18 +107,14 @@ async handleSubmit(event) {
 }
 
 
-
-
-
-
-
   render() {
     // table category:::::::::::::::::::::::::::::::::::::::::
     let tablecategory = "";
     if (!this.state.panding) {
       let ThisClass = this;
-      tablecategory = this.state.infocategory.map(function (category,index) {
-        let src = "http://localhost:8080/" + category.image ;
+      const arr = this.state.infocategory
+      console.log(arr);
+      tablecategory = arr.map(function (category,index) {
         return (
           
           <tr  key={index}>
@@ -131,23 +124,20 @@ async handleSubmit(event) {
               <div className="widget-content-wrapper">
                
                 <div className="widget-content-left flex2">
-                  <div className="widget-heading">{category.name}</div>
+                  <div className="widget-heading">{category.type}</div>
                 </div>
               </div>
             </div>
           </td>
-          <td className="text-center">
-            <img width={60} className="" src={src} alt />
-             </td>
           <td className="text-center">
             <div className=" btn btn-warning btn-sm" onClick={() => ThisClass.editButton(category.id)}> <i class="fas fa-edit"></i> update</div>
           </td>
           <td className="text-center">
             <div className=" btn btn-danger btn-sm" onClick={() => ThisClass.deleteButton(category.id)}> <i className="pe-7s-trash btn-icon-wrapper"></i> delete</div>
           </td>
-          <td className="text-center">
+          {/* <td className="text-center">
             <button type="button" id="PopoverCustomT-1" className="btn btn-primary btn-sm" onClick={() => ThisClass.detailsButton(category.id)}>Details</button>
-          </td>
+          </td> */}
         </tr>
         );
       });
@@ -158,25 +148,22 @@ async handleSubmit(event) {
 
     if (!this.state.pandingupdate) {
         updateForm = (
-           
-            <div className='container '>
+          <div className='container '>
             <div className=' card text-white bg-muted 'style={{maxWidth: '100rem'}} >
-           <div className="card-header text-dark">Update Category</div>
-           <div className="card-body">
-           <div>
-                         <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
-                             <div class="mb-3">
-                                 <label for="exampleInputName1" class="form-label">Name</label>
-                                 <input type="text" value={this.state.newName ?? this.state.infopdate.name}  onChange={this.handleName}class="form-control" id="exampleInputName1" />
-                             </div>
-                           
-                             <button type="submit" class="btn btn-primary">Submit</button>
-                         </form>
-                     </div>
-           </div>
-         </div>
-         
-         </div>
+            <div className="card-header text-dark">Update Category</div>
+            <div className="card-body">
+            <div>
+              <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="exampleInputType1" class="form-label">Type</label>
+                    <input type="text" value={this.state.newType ?? this.state.infopdate.type}  onChange={this.handleType}class="form-control" id="exampleInputType1" />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+            </div>
+            </div>
+          </div>
             
         );
     }
@@ -187,7 +174,7 @@ async handleSubmit(event) {
       infocategory = (
 
             <div>
-                <h5 className='text-white p-2 bg-secondary' style={{maxWidth: '17rem'}}> Category Name : {this.state.infoproducts.name}</h5>
+                <h5 className='text-white p-2 bg-info' style={{maxWidth: '17rem'}}> Category Type : {this.state.infoproducts.type}</h5>
 
             </div>
         )
@@ -197,11 +184,10 @@ async handleSubmit(event) {
     let infoproducts = "";
     if (!this.state.pandingproducts) {
       infoproducts = this.state.infoproducts.products.map(function (product) {
-        let src = "http://localhost:8080/" + product.image ;
 
             return  ( 
               <div className="card " style={{maxWidth: '20rem'}} >
-              <img className="card-img-top" src={src} height={'200px'} alt="Card image cap" />
+              {/* <img className="card-img-top" src={src} height={'200px'} alt="Card image cap" /> */}
             <div className="card-body">
             <h5 className="card-title">{product.name}</h5>
            <p className="card-text">{product.decsription} </p>
@@ -231,12 +217,13 @@ async handleSubmit(event) {
               <i className="pe-7s-note2 icon-gradient bg-mean-fruit">
               </i>
             </div>
-            <div>All Category</div>
+            <div>All Category
+            </div>
           </div>
           <div className="page-title-actions">
-            {/* <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" className="btn-shadow mr-3 btn btn-dark">
+            <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" className="btn-shadow mr-3 btn btn-dark">
               <i className="fa fa-star" />
-            </button> */}
+            </button>
             <div className="d-inline-block dropdown">
               <button type="button" className="btn-shadow  btn btn-info">
                 <span className="btn-icon-wrapper pr-2 opacity-7">
@@ -248,43 +235,33 @@ async handleSubmit(event) {
             </div>
           </div>  </div>
                      </div>
-      {/* <CardDash/> */}
       {/* :::::::::::::::::tables categorys::::::::::::::::::::: */}
-       <div className="row">
+  <div className="row">
   <div className="col-md-12">
     <div className="main-card mb-3 card">
       <div className="card-header">
-        {/* Table Categorys */}
-        <div className="btn-actions-pane-right">
-          {/* <div role="group" className="btn-group-sm btn-group">
-            <button className="active btn btn-focus">Create Category</button>
-          </div> */}
+        <div className="btn-actions-pane-right">        
         </div>
       </div>
-      <div className="table-responsive">
-        <table className="align-middle mb-0 table table-borderless table-striped table-hover">
-          <thead>
-            <tr>
-              <th className="text-center">#</th>
-              <th >Name</th>
-              <th className="text-center">Image</th>
-              <th className="text-center">update</th>
-              <th className="text-center">Delete</th>
-              {/* <th className="text-center">info</th> */}
-            </tr>
-          </thead>
-          <tbody>
-          { tablecategory}
-
-          
-          </tbody>
-        </table>
-      </div>
-      
+    <div className="table-responsive">
+    <table className="align-middle mb-0 table table-borderless table-striped table-hover">
+      <thead>
+        <tr>
+          <th className="text-center">#</th>
+          <th >Name</th>
+          <th className="text-center">update</th>
+          <th className="text-center">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        { tablecategory}        
+      </tbody>
+    </table>
+    </div>    
     </div>
   </div>
-       </div>
-     {  updateForm}
+  </div>
+     {updateForm}
      
      {infocategory}
      <div className="card-deck d-flex justify-content-center mt-3 ">
