@@ -1,488 +1,468 @@
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
-  }
-  
-  .App {
-    width: 100vw;
-    height: 100vh;
-    background: #faf9fb;
-    overflow-x: hidden;
-  }
-  
-  .App::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Header Styles Starts */
-  
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px 15px;
-    height: 60px;
-    width: 100%;
-    background: #fff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 101;
-    box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .logo {
-    min-width: 40px;
-    width: 50px;
-  }
-  
-  .inputBox {
-    background: #ffffff;
-    border-radius: 25px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding: 8px 15px;
-    width: 120px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  .inputBox .searchIcon {
-    color: #787a84;
-    font-size: 20px;
-  }
-  
-  .inputBox input {
-    width: 100%;
-    height: 100%;
-    outline: none;
-    border: none;
-    background: transparent;
-    color: #787a84;
-    padding-left: 8px;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  
-  .shoppingCart {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .shoppingCart .cart {
-    font-size: 30px;
-    color: #373848;
-  }
-  
-  .shoppingCart .cart_content {
-    width: 20px;
-    height: 20px;
-    background: #f5ae56;
-    border-radius: 100%;
-    min-width: 20px;
-    min-height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 0;
-    top: -8px;
-  }
-  
-  .shoppingCart .cart_content p {
-    font-weight: 500;
-    color: #faf9fb;
-  }
-  
-  .shoppingCart .noCartItem {
-    display: none;
-  }
-  
-  .profileContainer {
-    display: flex;
-    align-items: center;
-  }
-  
-  .profileContainer .imgBox {
-    width: 40px;
-    min-width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background: #444;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-  
-  .profileContainer .imgBox img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .profileContainer .userName {
-    font-size: 16px;
-    margin-left: 8px;
-    font-weight: 500;
-    display: none;
-    
-    align-items: center;
-  }
-  
-  .toggleMenu {
-    transform: rotate(90deg);
-  }
-  
-  .toggleMenu .toggleIcon {
-    color: #373848;
-    font-size: 30px !important;
-  }
-  
-  /* Header Styles Ends */
-  
-  /* Bottom Menu Style  */
-  
-  .bottomMenu{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 60px;
-    background: #d5d5d5;
-    border-radius: 25px 25px 0px 0px;
-    z-index: 101;
-  }
-  
-  .bottomMenu ul {
-    display: flex;
-  }
-  
-  .bottomMenu ul li {
-    position: relative;
-    list-style: none;
-    width: 60px;
-    height: 60px;
-    z-index: 1;
-  }
-  
-  .bottomMenu ul li a {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    font-weight: 500;
-  }
-  
-  .bottomMenu ul li a .icon {
-    position: relative;
-    display: block;
-    line-height: 70px;
-    text-align: center;
-    transition: 0.5s;
-  }
-  
-  .bottomMenu ul li a .icon .MuiSvgIcon-root {
-    font-size: 26px;
-    color: #373848;
-  }
-  
-  .bottomMenu ul li.active a .icon {
-    transform: translateY(-26px);
-  }
-  
-  .bottomMenu ul li.active a .icon .MuiSvgIcon-root {
-    color: #f9f9fb;
-    transition: 0.5s;
-  }
-  
-  .indicator {
-    position: absolute;
-    top: -50%;
-    width: 60px;
-    height: 60px;
-    background: #f5ae56;
-    border: 6px solid #faf9fb;
-    border-radius: 100vw;
-    transition: 0.5s;
-  }
-  
-  .indicator::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -20px;
-    width: 18px;
-    height: 18px;
-    background: transparent;
-    border-top-right-radius: 18px;
-    box-shadow: 0px -10px 0 0 #faf9fb;
-  }
-  
-  .indicator::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -20px;
-    width: 18px;
-    height: 18px;
-    background: transparent;
-    border-top-left-radius: 18px;
-    box-shadow: 0px -10px 0 0 #faf9fb;
-  }
-  
-  .bottomMenu ul li:nth-child(1).active ~ .indicator {
-    transform: translateX(calc(60px * 0));
-  }
-  
-  .bottomMenu ul li:nth-child(2).active ~ .indicator {
-    transform: translateX(calc(60px * 1));
-  }
-  
-  .bottomMenu ul li:nth-child(3).active ~ .indicator {
-    transform: translateX(calc(60px * 2));
-  }
-  
-  .bottomMenu ul li:nth-child(4).active ~ .indicator {
-    transform: translateX(calc(60px * 3));
-  }
-  
-  .bottomMenu ul li:nth-child(5).active ~ .indicator {
-    transform: translateX(calc(60px * 4));
-  }
-  
-  .bottomMenu ul li:nth-child(6).active ~ .indicator {
-    transform: translateX(calc(60px * 5));
-  }
-  /* Main Styles */
-  
-  main {
-    width: 100%;
-    height: auto;
-    margin-top: 60px;
-  }
-  
-  .mainContainer {
-    width: 100%;
-    height: auto;
-    background: #faf9fb;
-    padding: 10px;
-    padding-bottom: 100px;
-  }
-  
-  .banner {
-    width: 100%;
-    height: 130px;
-    border-radius: 10px;
-    background: url("https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Fbanner.png?alt=media&token=7e244d84-8821-477d-b273-4c9381a474fb")
-      no-repeat center;
-    background-size: cover;
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 0px 10px;
-  }
-  
-  .deliveryPic {
-    position: absolute;
-    right: -60px;
-    bottom: -10px;
-    width: 240px;
-  }
-  
-  .bannerContent {
-    padding: 8px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .bannerContent h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #2a2b3c;
-  }
-  
-  .bannerContent p {
-    font-size: 14px;
-    width: 200px;
-    color: #989594;
-    margin: 5px 0;
-  }
-  
-  .bannerContent p span {
-    color: #f8901c;
-    font-weight: 500;
-  }
-  
-  .bannerContent a {
-    background: #f8901c;
-    padding: 5px 15px;
-    border-radius: 100vw;
-    color: #faf9fb;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-  
-  .bannerContent :hover {
-    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
-    transition: 0.5s;
-  }
-  
-  /* dishContaine */
-  .dishContainer {
-    width: 100%;
-    padding: 10px 0;
-  }
-  
-  .menuCard {
-    width: 100%;
-  }
-  
-  .subMenuContianer,
-  .viewAll {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .subMenuContianer h3 {
-    font-size: 16px;
-    font-weight: 500;
-    color: #2a2b3c;
-  }
-  
-  .subMenuContianer .viewAll p {
-    font-size: 12px;
-    color: #f8901c;
-    font-weight: 400;
-  }
-  
-  .subMenuContianer .viewAll i {
-    background: #f8901c;
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
-  }
-  
-  .subMenuContianer .viewAll i .MuiSvgIcon-root {
-    font-size: 16px !important;
-    color: #faf9fb;
-  }
-  
-  .rowMenuCard {
-    width: 80px;
-    min-width: 80px;
-    height: 100px;
-    border-radius: 10px;
-    background: #fff;
-    margin-right: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
-    transition: 0.5s;
-    cursor: pointer;
-  }
-  
-  .rowMenuCard:hover,
-  .rowMenuCard.active {
-    background: #f8901c;
-  }
-  
-  .rowMenuCard .imgBox {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    min-height: 40px;
-    border-radius: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.5s;
-    overflow: hidden;
-  }
-  
-  .rowMenuCard:hover .imgBox,
-  .rowMenuCard.active .imgBox {
-    background: #faf9fb;
-  }
-  
-  .rowMenuCard .imgBox img {
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .rowMenuCard:hover .imgBox img,
-  .rowMenuCard.active .imgBox img {
-    width: 80%;
-    height: 80%;
-    transition: 0.5s;
-  }
-  
-  .rowMenuCard h3 {
-    font-size: 14px;
-    font-weight: 500;
-    color: #f8901c;
-    transition: 0.5s;
-  }
-  
-  .rowMenuCard:hover h3,
-  .rowMenuCard.active h3 {
-    color: #faf9fb;
-  }
-  
-  .rowMenuCard .loadMenu {
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    background: #f8901c;
-    transition: 0.5s;
-  }
-  
-  .rowMenuCard:hover .loadMenu,
-  .rowMenuCard.active .loadMenu {
-    background: #faf9fb;
-  }
-  
-  .rowMenuCard .loadMenu .MuiSvgIcon-root {
-    font-size: 14px !important;
-    color: #faf9fb;
-  }
-  
-  .rowMenuCard:hover .loadMenu .MuiSvgIcon-root,
-  .rowMenuCard.active .loadMenu .MuiSvgIcon-root {
-    color: #f8901c;
-  }
+*{
+  margin: 0;
+  padding: 0;
+  
+}
+html{
+  scroll-behavior: smooth;
+}
+body{
+  background-color: rgb(255, 238, 217);
+}
+/* CSS variables */
+:root{
+  --navbar-height:59px;
+}
+
+/* Navigation Bar */
+#navbar{
+  display: flex;
+  align-items: center;
+  font-family: 'Baloo Bhai 2', cursive;
+  position: sticky;
+  top: 0;   
+}
+#navbar::before{
+  content: "";
+  background-color: black;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: .4;
+}
+
+/*Navigation Bar : logo and image */
+#logo{
+  margin: 16px 25px;
+}
+#logo img{
+  clip-path: circle(50% at 50% 50%);
+  height: 60px;
+  margin: 3px 6px;
+}
+
+/*Navigation Bar : list styling */
+#navbar ul{
+  display: flex;   
+}
+
+#navbar ul li{
+  list-style: none ;
+  font-size: 1.3rem;
+  
+}
+#navbar ul li a{
+  color: #fff;
+  display: block;
+  padding: 3px 22px;
+  border-radius: 20px;
+  text-decoration: none;
+}
+#navbar ul li a:hover{
+  color: rgb(2, 63, 196);
+  display: block;
+  background-color: white;
+}
+
+/* HOME SECTION */
+#home{
+  display: flex;
+  flex-direction: column;
+  padding: 3px 200px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+#home::before{
+  content:"";
+  position: absolute;
+  background: url(https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466_960_720.jpg) no-repeat  center/cover;
+  height: 642px;
+  width: 100%;
+  z-index: -1;
+  opacity: .89;
+}
+#home h1{
+  color: white;
+  text-align: center;
+  font-family: 'Gabriela', serif;
+}#home p{
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+}
+/* Services Section */
+.services_container{
+  margin-top: 225px;
+}
+#services{
+  margin: 34px;
+  display: flex;
+}
+.services_container .h_primary_center{
+  color: rgba(17, 219, 34, 0.774);
+}
+#services .box{
+  border: 2px solid brown;
+  padding: 43px;
+  margin: 10px;
+  border-radius: 46px;
+  background-color: #efe4d1;
+}
+#services .box img{
+  height: 160px;
+  display: block;
+  margin: auto;
+  border-radius: 30px;
+}
+/* client section */
+#client_section{
+  height: 344px;
+  position: relative;
+
+}
+#client_section::before{
+  content: "";
+  position: absolute;
+  background-image: url(https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277__340.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: .6;
+}
+#clients{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.client_item{
+  padding: 34px;
+
+}
+#clients img{
+  height:124px ;
+  border-radius: 16px;
+
+
+}
+#contact .h_primary_center{
+  color: #fff;
+}
+
+/* Utility classes */
+.h_primary{
+  font-size: 3.8rem;
+  padding: 12px;
+  margin-top: 10px;
+  font-family: 'Gabriela', serif;
+  
+}
+.h_secondary{
+  font: 2rem;
+  text-align: center;
+  padding: 12px;
+  font-family: 'Gabriela', serif;
+}
+.h_primary_center{
+  text-align: center;
+  font-size: 2.8rem;
+  font-family: 'Gabriela', serif;
+  /* margin-top: 232px; */
+}
+ 
+.btn{
+  padding: 20px 69px;
+  background-color: brown;
+  border: none;
+  border-radius: 6px;
+  margin: 17px;
+  margin-top:66px;
+  font-size: 1rem;
+  color: wheat;
+  cursor: pointer;
+}
+.btn:hover{
+  color: yellow;
+}
+.box p{
+  text-align: center;
+  font-size: 20px;
+}
+
+/* CONTACT SECTION */
+
+#contact{
+  position: relative;
+  padding-top: 10px;
+
+}
+
+#contact::before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: .8;
+  background: url(https://cdn.pixabay.com/photo/2016/02/07/21/03/computer-1185626__340.jpg) no-repeat center center/cover;
+}
+#contact_box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 34px;
+}
+#contact_box form{
+  width: 40%;
+}
+#contact_box label{
+  font-size: 1.3rem;
+  font-family: 'Gabriela', serif;
+  font-weight: bold;
+  
+}
+
+#contact_box input,
+#contact_box textarea{
+  width: 100%;
+  padding: .5rem;
+  border-radius: 9px;
+
+  border: 2px solid red;
+  font-size: 1.1rem;
+}
+footer{
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+
+}
+.btn2{
+  background-color: brown;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: wheat;
+  cursor: pointer;
+  padding: 11px 37px;
+  display: block;
+  margin: auto;
+}
+.line{
+  display: flex;
+  width: 55px;
+  height: 4px;
+  position: relative;
+  background-color: blue;
+  margin-top: 10px;
+  transition: all 1s ease-in-out;
+  animation-name: line;
+  animation: line 2s ease-in-out 1s infinite alternate ;
+
+}
+@keyframes line{
+
+  from{
+      left: 39%;
+  }
+  to{
+      left: 57%;
+      
+  }
+}
+
+@media screen and (min-width:770px) and (max-width:1110px){
+  /* Navigation */
+#navbar{
+  flex-direction: column;
+}
+
+#navbar ul li a{
+  font-size: 1rem;
+  position: sticky;
+  padding: 0px 7px;
+}
+
+
+
+/* Home */
+#home{
+  height: 168px;
+  padding: 33px 77px;
+
+}
+#home::before{
+  height: 552px;
+
+}
+#home p{
+  font-size: 13px;
+}
+
+
+/* Services */
+
+#services{
+  flex-direction: column;
+}
+
+
+/* Client */
+#clients{
+  flex-wrap: wrap;
+}
+.client_item{
+  padding: 14px;
+}
+#clients img
+{
+  height:85px ;
+  border-radius: 14px;
+}
+#client_section{
+  height: 173px;
+
+}
+.h_primary_center {
+  text-align: center;
+  font-size: 1.8rem;
+  padding-top: 16px;
+
+}
+
+/* Contact us */
+
+
+
+/* footer */
+
+/* utility classes */
+.h_primary{
+  font-size: 26px;
+}
+.btn{
+  font-size: 13px;
+  padding: 9px 7px;
+  margin-top: 42px;
+}
+.line{
+  width: 30px;
+}
+
+}
+@media screen and (max-width:769px) {
+  /* Navigation */
+#navbar{
+  flex-direction: column;
+}
+#navbar ul li a{
+  font-size: 1rem;
+  padding: 0px 7px;
+}
+
+#logo img{
+  margin: -19px 6px;
+}
+
+/* Home */
+#home{
+  height: 168px;
+  padding: 33px 77px;
+
+}
+#home::before{
+  height: 552px;
+
+}
+#home p{
+  font-size: 13px;
+}
+
+
+
+
+/* Services */
+
+#services{
+  flex-direction: column;
+}
+#services .box img{
+  height: 82px;
+}
+
+
+/* Client */
+#clients{
+  flex-wrap: wrap;
+}
+.client_item{
+  padding: 10px;
+}
+#clients img
+{
+  height:35px ;
+  border-radius: 8px;
+}
+#client_section{
+  height: 127px;
+
+}
+.h_primary_center {
+  text-align: center;
+  font-size: 18px;
+  padding-top: 16px;
+
+}
+
+/* Contact us */
+#contact_box label{
+  font-size: 14px;
+  font-family: 'Gabriela', serif;
+  font-weight: bold;
+  
+}
+
+
+
+/* footer */
+footer{
+  font-size: 13px;
+}
+
+/* utility classes */
+.h_primary{
+  font-size: 26px;
+}
+.btn{
+  font-size: 13px;
+  padding: 9px 7px;
+  margin-top: 42px;
+}
+.btn2{
+  padding: 5px 12px;
+}
+
+::placeholder{
+
+font-size:14px;
+
+  }
+
+.line{
+  width: 25px;
+}
+@keyframes line{
+  from{
+      left: 32%;
+  }
+  to{
+      left: 62%;
+  }
+}
+}

@@ -12,7 +12,8 @@ export const logoutAction = () => {
 
 export const setRoleAction = () => {
     return {
-        type: 'SETROLE'
+        type: 'SETROLE',
+        payload: role
     }
 }
 

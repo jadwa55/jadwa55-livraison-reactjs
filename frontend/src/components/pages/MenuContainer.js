@@ -1,13 +1,22 @@
 import React from "react";
+import HomePage from "./HomePage.js";
+import SubMenuContainer from "./SubMenuContainer.js";
 
-function MenuContainer({link, icon, isHome}) {
-    return <li>
-        <li className={isHome ? "active" : ""}>
-            <a href={link}>
-                <span className="icon">{icon}</span>
-            </a>
-        </li>
-    </li>
+
+
+class Landingpage extends React.Component {
+  render() {
+    return (
+     <div className= "landingpage">
+      <SubMenuContainer/>
+      <HomePage/>
+
+
+
+</div>
+
+    );
+  }
 }
 
-export default MenuContainer;
+export default Landingpage;

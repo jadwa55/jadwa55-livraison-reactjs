@@ -1,0 +1,468 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    background-color: rgb(255, 238, 217);
+}
+/* CSS variables */
+:root{
+    --navbar-height:59px;
+}
+
+/* Navigation Bar */
+#navbar{
+    display: flex;
+    align-items: center;
+    font-family: 'Baloo Bhai 2', cursive;
+    position: sticky;
+    top: 0;   
+}
+#navbar::before{
+    content: "";
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: .4;
+}
+
+/*Navigation Bar : logo and image */
+#logo{
+    margin: 16px 25px;
+}
+#logo img{
+    clip-path: circle(50% at 50% 50%);
+    height: 60px;
+    margin: 3px 6px;
+}
+
+/*Navigation Bar : list styling */
+#navbar ul{
+    display: flex;   
+}
+
+#navbar ul li{
+    list-style: none ;
+    font-size: 1.3rem;
+    
+}
+#navbar ul li a{
+    color: #fff;
+    display: block;
+    padding: 3px 22px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+#navbar ul li a:hover{
+    color: rgb(2, 63, 196);
+    display: block;
+    background-color: white;
+}
+
+/* HOME SECTION */
+#home{
+    display: flex;
+    flex-direction: column;
+    padding: 3px 200px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+#home::before{
+    content:"";
+    position: absolute;
+    background: url(https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466_960_720.jpg) no-repeat  center/cover;
+    height: 642px;
+    width: 100%;
+    z-index: -1;
+    opacity: .89;
+}
+#home h1{
+    color: white;
+    text-align: center;
+    font-family: 'Gabriela', serif;
+}#home p{
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+}
+/* Services Section */
+.services_container{
+    margin-top: 225px;
+}
+#services{
+    margin: 34px;
+    display: flex;
+}
+.services_container .h_primary_center{
+    color: rgba(17, 219, 34, 0.774);
+}
+#services .box{
+    border: 2px solid brown;
+    padding: 43px;
+    margin: 10px;
+    border-radius: 46px;
+    background-color: #efe4d1;
+}
+#services .box img{
+    height: 160px;
+    display: block;
+    margin: auto;
+    border-radius: 30px;
+}
+/* client section */
+#client_section{
+    height: 344px;
+    position: relative;
+
+}
+#client_section::before{
+    content: "";
+    position: absolute;
+    background-image: url(https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277__340.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: .6;
+}
+#clients{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.client_item{
+    padding: 34px;
+
+}
+#clients img{
+    height:124px ;
+    border-radius: 16px;
+
+
+}
+#contact .h_primary_center{
+    color: #fff;
+}
+
+/* Utility classes */
+.h_primary{
+    font-size: 3.8rem;
+    padding: 12px;
+    margin-top: 10px;
+    font-family: 'Gabriela', serif;
+    
+}
+.h_secondary{
+    font: 2rem;
+    text-align: center;
+    padding: 12px;
+    font-family: 'Gabriela', serif;
+}
+.h_primary_center{
+    text-align: center;
+    font-size: 2.8rem;
+    font-family: 'Gabriela', serif;
+    /* margin-top: 232px; */
+}
+   
+.btn{
+    padding: 20px 69px;
+    background-color: brown;
+    border: none;
+    border-radius: 6px;
+    margin: 17px;
+    margin-top:66px;
+    font-size: 1rem;
+    color: wheat;
+    cursor: pointer;
+}
+.btn:hover{
+    color: yellow;
+}
+.box p{
+    text-align: center;
+    font-size: 20px;
+}
+
+/* CONTACT SECTION */
+
+#contact{
+    position: relative;
+    padding-top: 10px;
+
+}
+
+#contact::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: .8;
+    background: url(https://cdn.pixabay.com/photo/2016/02/07/21/03/computer-1185626__340.jpg) no-repeat center center/cover;
+}
+#contact_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 34px;
+}
+#contact_box form{
+    width: 40%;
+}
+#contact_box label{
+    font-size: 1.3rem;
+    font-family: 'Gabriela', serif;
+    font-weight: bold;
+    
+}
+
+#contact_box input,
+#contact_box textarea{
+    width: 100%;
+    padding: .5rem;
+    border-radius: 9px;
+
+    border: 2px solid red;
+    font-size: 1.1rem;
+}
+footer{
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+
+}
+.btn2{
+    background-color: brown;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: wheat;
+    cursor: pointer;
+    padding: 11px 37px;
+    display: block;
+    margin: auto;
+}
+.line{
+    display: flex;
+    width: 55px;
+    height: 4px;
+    position: relative;
+    background-color: blue;
+    margin-top: 10px;
+    transition: all 1s ease-in-out;
+    animation-name: line;
+    animation: line 2s ease-in-out 1s infinite alternate ;
+
+}
+@keyframes line{
+
+    from{
+        left: 39%;
+    }
+    to{
+        left: 57%;
+        
+    }
+}
+
+@media screen and (min-width:770px) and (max-width:1110px){
+    /* Navigation */
+#navbar{
+    flex-direction: column;
+}
+
+#navbar ul li a{
+    font-size: 1rem;
+    position: sticky;
+    padding: 0px 7px;
+}
+
+
+
+/* Home */
+#home{
+    height: 168px;
+    padding: 33px 77px;
+
+}
+#home::before{
+    height: 552px;
+
+}
+#home p{
+    font-size: 13px;
+}
+
+
+/* Services */
+
+#services{
+    flex-direction: column;
+}
+
+
+/* Client */
+#clients{
+    flex-wrap: wrap;
+}
+.client_item{
+    padding: 14px;
+}
+#clients img
+{
+    height:85px ;
+    border-radius: 14px;
+}
+#client_section{
+    height: 173px;
+
+}
+.h_primary_center {
+    text-align: center;
+    font-size: 1.8rem;
+    padding-top: 16px;
+
+}
+
+/* Contact us */
+
+
+
+/* footer */
+
+/* utility classes */
+.h_primary{
+    font-size: 26px;
+}
+.btn{
+    font-size: 13px;
+    padding: 9px 7px;
+    margin-top: 42px;
+}
+.line{
+    width: 30px;
+}
+
+}
+@media screen and (max-width:769px) {
+    /* Navigation */
+#navbar{
+    flex-direction: column;
+}
+#navbar ul li a{
+    font-size: 1rem;
+    padding: 0px 7px;
+}
+
+#logo img{
+    margin: -19px 6px;
+}
+
+/* Home */
+#home{
+    height: 168px;
+    padding: 33px 77px;
+
+}
+#home::before{
+    height: 552px;
+
+}
+#home p{
+    font-size: 13px;
+}
+
+
+
+
+/* Services */
+
+#services{
+    flex-direction: column;
+}
+#services .box img{
+    height: 82px;
+}
+
+
+/* Client */
+#clients{
+    flex-wrap: wrap;
+}
+.client_item{
+    padding: 10px;
+}
+#clients img
+{
+    height:35px ;
+    border-radius: 8px;
+}
+#client_section{
+    height: 127px;
+
+}
+.h_primary_center {
+    text-align: center;
+    font-size: 18px;
+    padding-top: 16px;
+
+}
+
+/* Contact us */
+#contact_box label{
+    font-size: 14px;
+    font-family: 'Gabriela', serif;
+    font-weight: bold;
+    
+}
+
+
+
+/* footer */
+footer{
+    font-size: 13px;
+}
+
+/* utility classes */
+.h_primary{
+    font-size: 26px;
+}
+.btn{
+    font-size: 13px;
+    padding: 9px 7px;
+    margin-top: 42px;
+}
+.btn2{
+    padding: 5px 12px;
+}
+  
+ ::placeholder{
+
+  font-size:14px;
+
+    }
+
+.line{
+    width: 25px;
+}
+@keyframes line{
+    from{
+        left: 32%;
+    }
+    to{
+        left: 62%;
+    }
+}
+}
