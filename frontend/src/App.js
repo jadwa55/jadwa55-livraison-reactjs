@@ -11,11 +11,14 @@ import Category from './components/controllers/category/Category';
 import Createcategory from './components/controllers/category/CreateCategory';
 import Product from './components/controllers/product/Product';
 import CreateProduct from './components/controllers/product/CreateProduct';
-  
+
+import Login from './components/controllers/Auth/Login';
+import Register from './components/controllers/Auth/Register';
+
   import Dashboard from './components/dashboard/dashboard';
-//   import { checkLoginBeforeRenderComponent } from './middlewares/AuthMiddleware'
-//   import { checkIfNotLoginBeforeRenderComponent } from './middlewares/AuthMiddleware'
-  
+  import { checkLoginBeforeRenderComponent } from './middlewares/AuthMiddleware'
+  import { checkIfNotLoginBeforeRenderComponent } from './middlewares/AuthMiddleware'
+
   
   
   function App() {
@@ -25,10 +28,12 @@ import CreateProduct from './components/controllers/product/CreateProduct';
         
         <Routes>
         <Route path="/" element={(<HomePage />)} />
-        <Route path="/dashboard/category" element={(<Category/>)} />
-        <Route path="/dashboard/category/create" element={(<Createcategory/>)} />
-        <Route path="/dashboard/product" element={(<Product/>)} />
-        <Route path="/dashboard/product/create" element={(<CreateProduct/>)} />
+        <Route path="/login" element={checkIfNotLoginBeforeRenderComponent(<Login />)} />
+        <Route path="/register" element={checkIfNotLoginBeforeRenderComponent(<Register />)} />
+        <Route path="/dashboard/category" element={checkLoginBeforeRenderComponent(<Category/>)} />
+        <Route path="/dashboard/category/create" element={checkLoginBeforeRenderComponent(<Createcategory/>)} />
+        <Route path="/dashboard/product" element={checkLoginBeforeRenderComponent(<Product/>)} />
+        <Route path="/dashboard/product/create" element={checkLoginBeforeRenderComponent(<CreateProduct/>)} />
   
           <Route path="/dashboard" element={(<Dashboard/>)} />
   
