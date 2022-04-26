@@ -13,7 +13,7 @@ export const logoutAction = () => {
 export const setRoleAction = () => {
     return {
         type: 'SETROLE',
-        payload: role
+        // payload: role
     }
 }
 

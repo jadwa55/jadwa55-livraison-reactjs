@@ -3,7 +3,7 @@ import axios from 'axios';
 import "./auth.css";
 import jwtDecode from "jwt-decode";
 import { useDispatch } from "react-redux";
-import { loginAction , setRoleAction , setIdAction } from './../../../action/authAction';
+import { loginAction , setRoleAction , setIdAction } from './../../../actions/authActions';
 const Login = () => {
 
  const [data , setData] = useState({
@@ -19,7 +19,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const APP_URL = "http://localhost:8080/api/";
   const login =(email, password)=> {
-   return axios.post(APP_URL + 'login', {
+   return axios.post(APP_URL + 'signin', {
      email: email,
      password: password,
    });
@@ -68,7 +68,7 @@ const Login = () => {
   
     <div className="row d-flex justify-content-center ">
 
-    <div class="col-xl-8 col-lg-7 col-md-12 bg">
+    <div className="col-xl-8 col-lg-7 col-md-12 bg">
                
             </div>
       <div className="col-xl-4 col-lg-5 col-md-12 login">
@@ -76,7 +76,7 @@ const Login = () => {
     <div className="login-section">
           <div className="logo clearfix">
             <a href="/">
-              Livraison App
+              Restau MARHABA
             </a>
           </div>
           <h3>Sign in into your account</h3>

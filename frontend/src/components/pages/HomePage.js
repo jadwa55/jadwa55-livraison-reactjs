@@ -1,5 +1,5 @@
 import React from "react";
-// import "../../css/homepage";
+
 // import logo  from './../../../src/components/images/logo.jpg';
 
 class HomePage extends React.Component {

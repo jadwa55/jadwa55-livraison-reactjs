@@ -64,13 +64,13 @@ class Register extends React.Component {
 
     <div class="col-xl-8 col-lg-7 col-md-12 bga">
                
-            </div>
+    </div>
       <div className="col-xl-4 col-lg-5 col-md-12 login">
     
     <div className="login-section">
-          <div className="logo clearfix">
+          <div className="">
             <a href="/">
-              Livraison App
+              Restau MARHABA
             </a>
           </div>
           <h3>Sign up into your new account</h3>
@@ -97,15 +97,15 @@ class Register extends React.Component {
                 <i className="fa fa-unlock-alt" />
 
               </div>
-              <div className="form-group form-fg">
-              <select className="input-text" value={this.state.role} onChange={this.handleType} required>
+              {/* <div className="form-group form-fg">
+                <select className="input-text" value={this.state.role} onChange={this.handleType} required>
                                 <option >Role</option>
 
                                 <option value='client'>Client</option>
                                 <option value="livreur">delivery</option>
-                            </select>
-                            <i class="fas fa-user-tag"></i>
-              </div>
+                </select>
+                    <i class="fas fa-user-tag"></i>
+              </div> */}
              
               <div className="form-group mt-2">
                 <button type="submit" className="btn-md btn-fg btn-block">Register</button>
