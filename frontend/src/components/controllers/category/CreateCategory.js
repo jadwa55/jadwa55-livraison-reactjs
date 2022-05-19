@@ -8,33 +8,26 @@ import Siderbar from './../../../components/layouts/siderbar';
 class createcategory extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { name: '', image: '' };
+        this.state = { type: '' };
 
-        this.handleName = this.handleName.bind(this);
-       
-        this.handleImage = this.handleImage.bind(this);
+        this.handleType = this.handleType.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
         
     }
-    handleName(event) {
-        this.setState({ name: event.target.value });
-    }
-  
-    handleImage(event) {
-        console.log('event.target.files', event.target.files);
-        this.setState({ image: event.target.files[0] });
+    handleType(event) {
+        this.state.type= event.target.value
+        console.log(this.state.type)
     }
 
-    async handleSubmit(event) {
-        event.preventDefault();
+     async handleSubmit () {
 
-        console.log('A name was submitted: ' + this.state.name);
-        console.log('A image was submitted: ' + this.state.image);
 
+
+        console.log('A type was submitted: ' + this.state.type);
         try {
 
-            let rescreatecategory = await createCategorys(this.state.name, this.state.image)
+            let rescreatecategory = await createCategorys(this.state.type)
 
             if (rescreatecategory .status == 200) {
                 console.log('Done Req  : ');
@@ -47,6 +40,8 @@ class createcategory extends React.Component {
             console.log('error', error);
             handelCatchInAxios(error)
         }
+
+        console.log(this.state.type);
     }
     render() {
         return (
@@ -71,46 +66,30 @@ class createcategory extends React.Component {
             {/* All Category */}
           </div>
         </div>
-        <div className="page-title-actions">
-          {/* <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" className="btn-shadow mr-3 btn btn-dark">
-            <i className="fa fa-star" />
-          </button> */}
-          {/* <div className="d-inline-block dropdown">
-            <button type="button" className="btn-shadow  btn btn-info">
-              <span className="btn-icon-wrapper pr-2 opacity-7">
-              <i class="fas fa-plus-circle"></i>
-              </span><a  className="text-decoration-none text-white" href='/dashboard/category/create'>Create Category</a>
-            </button>
-           
-          </div> */}
-        </div>  </div>
-                   </div>
+          <div className="page-title-actions">
+          </div> 
+        </div>
+       </div>
 
     {/* :::::::::::::::::create categorys::::::::::::::::::::: */}
     <div className='container'>
-   <div className=' card text-white bg-light 'style={{maxWidth: '100rem'}} >
-  <div className="card-header text-dark">Create Category</div>
-  <div className="card-body">
-  <div>
-                <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
+      <div className=' card text-white bg-light 'style={{maxWidth: '100rem'}} >
+        <div className="card-header text-dark">Create Category</div>
+          <div className="card-body">
+            <div>
+               
                     <div class="mb-3">
-                        <label for="exampleInputName1" class="form-label">Name</label>
-                        <input type="text" value={this.state.name} onChange={this.handleName} class="form-control" id="exampleInputName1" />
+                        <label for="exampleInputType1" class="form-label">Type</label>
+                        <input type="text"  onChange={this.handleType} class="form-control" id="exampleInputType1" />
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleInputImage1" class="form-label">Image</label>
-                        <input type="file" onChange={this.handleImage} class="form-control" id="exampleInputImage1" multiple="multiple" />
-                    </div>
+                    <button onClick={(e)=>{
+                      this.handleSubmit()
+                    }} type="submit" class="btn btn-primary">Submit</button>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
             </div>
-  </div>
-</div>
-
-</div>
-
-   
+          </div>
+        </div>
+      </div>
     </div>
     </div>
     </div>

@@ -20,12 +20,12 @@ class Product extends React.Component {
       pandingupdate:true,
       newname: null,
       newdescription: null,
-      newprice: null,
+      newprix: null,
       newcategory_id: null,
     };
     this.handleName = this.handleName.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
-    this.handlPrice = this.handlPrice.bind(this);
+    this.handlPrix = this.handlPrix.bind(this);
     this.handleCategory_id = this.handleCategory_id.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -33,9 +33,10 @@ class Product extends React.Component {
     try {
       let res = await  getAllproduct(); // get axios promise
       let data = res.data;
+      console.log(data.repas);
       console.log("ALL products :", data);
       // get all data from pomise
-      this.setState({ infoproduct: data }); // Set data to state
+      this.setState({ infoproduct: data.repas }); // Set data to state
       this.setState({ panding: false }); // Change status panding for render data
     } catch (e) {
       console.error(e);
@@ -83,8 +84,8 @@ class Product extends React.Component {
 handleDescription(event) {
     this.setState({ newdescription: event.target.value });
 }
-handlPrice(event) {
-    this.setState({ newprice: event.target.value });
+handlPrix(event) {
+    this.setState({ newprix: event.target.value });
 }
 
 
@@ -95,8 +96,8 @@ async handleSubmit(event) {
   event.preventDefault();
 
   let name = this.state.newname ?? this.state. infopdate.name;
-  let decsription = this.state.newdescription ?? this.state. infopdate.decsription;
-  let price = this.state.newprice ?? this.state. infopdate.price;
+  let description = this.state.newdescription ?? this.state. infopdate.description;
+  let prix = this.state.newprix ?? this.state. infopdate.prix;
   let category_id = this.state.newcategory_id ?? this.state.infocategory.category_id;
 
 
@@ -108,7 +109,7 @@ async handleSubmit(event) {
   try {
       let resupdate = await updateproduct(
           this.state.infopdate.id,
-          name,decsription,price,category_id
+          name,description,prix,category_id
       );
       console.log(resupdate);
 
@@ -131,6 +132,7 @@ async handleSubmit(event) {
     if (!this.state.panding) {
       let ThisClass = this;
       tableproduct = this.state.infoproduct.map(function (product,index) {
+        console.log(product.image);
         let src = "http://localhost:8080/" + product.image ;
         return (
           
@@ -150,19 +152,16 @@ async handleSubmit(event) {
             <img width={60} className="" src={src} alt />
              </td>
              <td className="text-center">
-             <div className="widget-heading">{product.price}</div>
+             <div className="widget-heading">{product.prix}</div>
           </td>
           <td className="text-center">
-             <div className="widget-heading">{product.decsription}</div>
+             <div className="widget-heading">{product.description}</div>
           </td>
           <td className="text-center">
             <div className=" btn btn-warning btn-sm"onClick={() => ThisClass.editButton(product.id)} > <i class="fas fa-edit"></i> update</div>
           </td>
           <td className="text-center">
             <div className=" btn btn-danger btn-sm" onClick={() => ThisClass.deleteButton(product.id)}> <i className="pe-7s-trash btn-icon-wrapper"></i> delete</div>
-          </td>
-          <td className="text-center">
-            <button type="button" id="PopoverCustomT-1" className="btn btn-primary btn-sm"  >Details</button>
           </td>
         </tr>
         );
@@ -187,12 +186,12 @@ async handleSubmit(event) {
                              </div>
                            
                              <div class="mb-3">
-                                 <label for="exampleInputName1" class="form-label">Decsription</label>
-                                 <input type="text" value={this.state.newdescription ?? this.state.infopdate.decsription}  onChange={this.handleName}class="form-control" id="exampleInputName1" />
+                                 <label for="exampleInputName1" class="form-label">Description</label>
+                                 <input type="text" value={this.state.newdescription ?? this.state.infopdate.description}  onChange={this.handleName}class="form-control" id="exampleInputName1" />
                              </div>
                              <div class="mb-3">
-                                 <label for="exampleInputName1" class="form-label">Price</label>
-                                 <input type="number" value={this.state.newprice ?? this.state.infopdate.price}  onChange={this.handleName}class="form-control" id="exampleInputName1" />
+                                 <label for="exampleInputName1" class="form-label">Prix</label>
+                                 <input type="number" value={this.state.newprix ?? this.state.infopdate.prix}  onChange={this.handleName}class="form-control" id="exampleInputName1" />
                              </div>
                              <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">
@@ -260,10 +259,10 @@ async handleSubmit(event) {
        <div className="row">
   <div className="col-md-12">
     <div className="main-card mb-3 card">
-      <div className="card-header">Table Products
+      <div className="card-header">
         <div className="btn-actions-pane-right">
           <div role="group" className="btn-group-sm btn-group">
-            <button className="active btn btn-focus">Create Products</button>
+            {/* <button className="active btn btn-focus">Create Product</button> */}
           </div>
         </div>
       </div>
@@ -275,7 +274,7 @@ async handleSubmit(event) {
               <th >Name</th>
               <th className="text-center">Image</th>
               <th className="text-center">Price</th>
-              <th className="text-center">decsription</th>
+              <th className="text-center">Description</th>
               <th className="text-center">update</th>
               <th className="text-center">Delete</th>
               {/* <th className="text-center">info</th> */}

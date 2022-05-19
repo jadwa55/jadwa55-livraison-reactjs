@@ -28,7 +28,7 @@ import Register from './components/controllers/Auth/Register';
         <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={(<Login />)} />
-        <Route path="/register" element={(<Register />)} />
+        <Route path="/register" element={(<Register/>)} />
         <Route path="/dashboard/category" element={(<Category/>)} />
         <Route path="/dashboard/category/create" element={(<Createcategory/>)} />
         <Route path="/dashboard/product" element={(<Product/>)} />

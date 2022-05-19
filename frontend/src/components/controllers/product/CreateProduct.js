@@ -38,8 +38,7 @@ class CreateProduct extends React.Component {
         this.setState({ category_id: event.target.value });
     }
 
-    async handleSubmit(event) {
-        event.preventDefault();
+    async handleSubmit() {
 
         console.log('A name was submitted: ' + this.state.name);
         console.log('A image was submitted: ' + this.state.image);
@@ -64,9 +63,9 @@ class CreateProduct extends React.Component {
         try {
           let res = await  getAllcategory(); // get axios promise
           let data = res.data;
-          console.log("ALL category :", data);
+          console.log("ALL category :", data.category);
           // get all data from pomise
-          this.setState({ infocategory: data }); // Set data to state
+          this.setState({ infocategory: data.category }); // Set data to state
           this.setState({ pandingcategory: false }); // Change status panding for render data
         } catch (e) {
           console.error(e);
@@ -85,7 +84,7 @@ class CreateProduct extends React.Component {
         <select class="form-control form-select" value={this.state.category_id} onChange={this.handleCategory_id}  >
         <option> Please select category</option>
         {this.state.infocategory.map(function (category) {
-          return <option value={category.id} >{category.name}</option>;
+          return <option value={category.id} >{category.type}</option>;
         })}
       </select>
     )  
@@ -135,7 +134,6 @@ class CreateProduct extends React.Component {
   <div className="card-header text-dark">Create Product</div>
   <div className="card-body">
   <div>
-                <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="exampleInputName1" class="form-label">Name</label>
                         <input type="text" value={this.state.name} onChange={this.handleName} class="form-control" id="exampleInputName1" />
@@ -156,8 +154,10 @@ class CreateProduct extends React.Component {
                         <input type="file" onChange={this.handleImage} class="form-control" id="exampleInputImage1" multiple="multiple" />
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                    <button onClick={(e)=>{
+                      e.preventDefault()
+                      this.handleSubmit(e)
+                    }} type="submit" class="btn btn-primary">Submit</button>
             </div>
   </div>
 </div>

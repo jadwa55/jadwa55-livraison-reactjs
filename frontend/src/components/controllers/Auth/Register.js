@@ -6,44 +6,63 @@ import "./auth.css";
 class Register extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { name: '', email: '', password: '', role: '' };
+        this.state = { firstName: '', lastName: '', email: '', telephone: '', password: '', passwordConfirm: '', role: '' };
 
-        this.handleName = this.handleName.bind(this);
+        this.handleFirstName = this.handleFirstName.bind(this);
+        this.handleLastName = this.handleLastName.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
+        // this.handleTelephone = this.handleTelephone(this);
         this.handlePassword = this.handlePassword.bind(this);
-        this.handleType = this.handleType.bind(this);
+        this.handlePasswordConfirm = this.handlePasswordConfirm.bind(this);
+        this.handleRole = this.handleRole.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleName(event) {
-        this.setState({ name: event.target.value });
+    handleFirstName(event) {
+        this.setState({ firstName: event.target.value });
+    }
+
+    handleLastName(event) {
+        this.setState({ lastName: event.target.value });
     }
 
     handleEmail(event) {
         this.setState({ email: event.target.value });
     }
 
+    // handleTelephone(event) {
+    //     this.setState({ telephone: event.target.value });
+    // }
+
     handlePassword(event) {
         this.setState({ password: event.target.value });
     }
 
-    handleType(event) {
+    handlePasswordConfirm(event) {
+        this.setState({ passwordConfirm: event.target.value });
+    }
+    
+    handleRole(event) {
         this.setState({ role: event.target.value });
     }
+
 
     async handleSubmit(event) {
         event.preventDefault();
 
-        console.log('A name was submitted: ' + this.state.name);
+        console.log('A name was submitted: ' + this.state.firstName);
+        console.log('A LastName was submitted: ' + this.state.lastName);
+        console.log('A telephone was submitted: ' + this.state.telephone);
         console.log('A email was submitted: ' + this.state.email);
         console.log('A password was submitted: ' + this.state.password);
+        console.log('A passwordConfirm was submitted: ' + this.state.passwordConfirm);
         console.log('A type was submitted: ' + this.state.role);
 
         try {
-            let repRegister = await register(this.state.name, this.state.email, this.state.password, this.state.role)
+            let repRegister = await register(this.state.firstName, this.state.lastName, this.state.telephone, this.state.email, this.state.password, this.state.passwordConfirm, this.state.role)
             console.log(repRegister);
 
-            if (repRegister.status == 200) {
+            if (repRegister.status === 200) {
                 window.location = "/login";
             }
         } catch (error) {
@@ -51,6 +70,7 @@ class Register extends React.Component {
             window.location = "/register";
         }
     }
+
 
   render() {
     return (
@@ -85,27 +105,29 @@ class Register extends React.Component {
           <div className="form-container">
             <form onSubmit={this.handleSubmit}>
             <div className="form-group form-fg">
-                <input type="name" name="name" className="input-text" placeholder="Name" value={this.state.name} onChange={this.handleName}/>
+                <input type="text" name="firstName" className="input-text" placeholder="Name" value={this.state.firstName} onChange={(event)=>this.handleFirstName(event)}/>
                 <i className="fas fa-users" />
               </div>
               <div className="form-group form-fg">
-                <input type="email" name="email" className="input-text" placeholder="Email Address" value={this.state.email} onChange={this.handleEmail} />
+                <input type="text" name="lastName" className="input-text" placeholder="LastName" value={this.state.lastName} onChange={(event)=>this.handleLastName(event)}/>
+                <i className="fas fa-users" />
+              </div>
+              <div className="form-group form-fg">
+                <input type="number" name="telephone" className="input-text" placeholder="tel" value={this.state.telephone} />
+                <i className="fas fa-users" />
+              </div>
+              <div className="form-group form-fg">
+                <input type="email" name="email" className="input-text" placeholder="Email Address" value={this.state.email} onChange={(event)=>this.handleEmail(event)} />
                 <i className="fa fa-envelope" />
               </div>
               <div className="form-group form-fg">
-                <input type="password" name="password" className="input-text" placeholder="Password" value={this.state.password} onChange={this.handlePassword} />
+                <input type="password" name="password" className="input-text" placeholder="Password" value={this.state.password} onChange={(event)=>this.handlePassword(event)} />
                 <i className="fa fa-unlock-alt" />
-
               </div>
-              {/* <div className="form-group form-fg">
-                <select className="input-text" value={this.state.role} onChange={this.handleType} required>
-                                <option >Role</option>
-
-                                <option value='client'>Client</option>
-                                <option value="livreur">delivery</option>
-                </select>
-                    <i class="fas fa-user-tag"></i>
-              </div> */}
+              <div className="form-group form-fg">
+                <input type="password" name="passwordConfirm" className="input-text" placeholder="PasswordConfirm" value={this.state.passwordConfirm} onChange={(event)=>this.handlePasswordConfirm(event)} />
+                <i className="fa fa-unlock-alt" />
+              </div>
              
               <div className="form-group mt-2">
                 <button type="submit" className="btn-md btn-fg btn-block">Register</button>
@@ -129,5 +151,7 @@ class Register extends React.Component {
     );
   }
 }
+
+
 
 export default Register;

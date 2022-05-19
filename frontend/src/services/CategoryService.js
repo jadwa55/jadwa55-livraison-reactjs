@@ -13,23 +13,21 @@ export function getcategory(id) {
   return axios.get(APP_URL + "Category/"+id);
 }
 
-export function createCategorys(name, image) {
+export function createCategorys(type) {
   console.log("getAllcategory");
 
-  const formData = new FormData();
+  // formData.append("image", image, image.name);
 
-  formData.append("image", image, image.name);
+  // formData.append("name", name);
 
-  formData.append("name", name);
+  // console.log("formData : ", formData.get("image"));
 
-  console.log("formData : ", formData.get("image"));
-
-  return axios.post(APP_URL + "category/create", formData);
+  return axios.post(APP_URL+"category/create", {type:type});
 }
 
-export function updateCategory(id, name) {
+export function updateCategory(id, type) {
   console.log('category updating');
-  return axios.post(APP_URL + "category/update/" + id, { name: name });
+  return axios.post(APP_URL + "category/update/" + id, { type: type });
 }
 
 export function deleteCategory(id) {
